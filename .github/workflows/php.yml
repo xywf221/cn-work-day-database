@@ -10,16 +10,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    # 拉取代码
     - name: Checkout codes
       uses: actions/checkout@v2
 
+    # php-cs-fixer
+    - name: Run php-cs-fixer
+      uses: docker://oskarstark/php-cs-fixer-ga
+
+    # 生成数据文件
     - name: Build wrok day json data file
       run: php run.php
 
-    - name: Commit files
-      run: |
-        git add README.md
-        git commit -m "database change"
-
-    - name: Push changes
-      run: git push
+    # 提交修改
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Apply php-cs-fixer or json data file changes
