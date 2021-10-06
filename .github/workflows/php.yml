@@ -16,10 +16,6 @@ jobs:
       with:
         ref: ${{ github.head_ref }}
 
-    # php-cs-fixer
-    - name: Run php-cs-fixer
-      uses: docker://oskarstark/php-cs-fixer-ga
-
     # 生成数据文件
     - name: Build wrok day json data file
       run: php run.php
