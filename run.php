@@ -17,7 +17,7 @@ foreach (range(1, 12) as $i) {
     foreach ($payload['data'][0]['almanac'] as $calendar) {
         if ($calendar['year'] == $year && $calendar['month'] == $month) {
             $date = [
-                'date' => sprintf("%s-%s-%s", $calendar['year'], $calendar['month'], $calendar['day'] >= 10 ? $calendar['day'] : '0' . $calendar['day'])
+                'date' => sprintf("%s-%02d-%02d", $calendar['year'], $calendar['month'], $calendar['day'])
             ];
             $is_work_day = false;
             if (array_key_exists('status', $calendar)) {
